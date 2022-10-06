@@ -1,19 +1,30 @@
 while True:
-    alphabet ="abcdefghijklmnopqrstuvwxyz"
-    encrypt = input("Enter a clear message:").lower()
-    key = int(input("Please enter a key ( number from 1-25): "))
+    alphabet = {"eng": "abcdefghijklmnopqrstuvwxyz",
+                "ukr": "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя",
+                "nums": "0123456789"
+                }
+    encrypt = input("Enter a clear message: ").lower()
     encrypted = ""
     for letter in encrypt:
-        position = alphabet.find(letter)
-        newPosition = position + key
-        if letter in alphabet:
-            if letter in alphabet[-1:-key-1:-1]:
-                encrypted=encrypted + alphabet[position + key - len(alphabet)]
+        if letter in alphabet["eng"]:
+            position = alphabet["eng"].find(letter) + 1
+            if letter in alphabet["eng"][-1]:
+                encrypted = encrypted + alphabet["eng"][0]
             else:
-                encrypted = encrypted + alphabet[newPosition]
+                encrypted = encrypted + alphabet["eng"][position]
+        elif letter in alphabet["ukr"]:
+            position = alphabet["ukr"].find(letter) + 1
+            if letter in alphabet["ukr"][-1]:
+                encrypted = encrypted + alphabet["ukr"][0]
+            else:
+                encrypted = encrypted + alphabet["ukr"][position]
+        elif letter in alphabet["nums"]:
+            position = alphabet["nums"].find(letter) + 1
+            if letter in alphabet["nums"][-1]:
+                encrypted = encrypted + alphabet["nums"][0]
+            else:
+                encrypted = encrypted + alphabet["nums"][position]
         else:
-           encrypted = encrypted + letter
-    print("Your cipher is: ", encrypted)
-
-
+            encrypted = encrypted + letter
+    print(encrypted)
 
