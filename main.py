@@ -1,30 +1,41 @@
+
+def ShowSorted(text):
+    text = text.replace(".", " ")
+    text = text.replace(",", " ")
+    allWords = text.split()
+    allWordsSingle = {}
+    for word in allWords:
+        allWordsSingle.update({word: allWords.count(word)})
+    keysSorted = []
+    for key in allWordsSingle:
+        keysSorted.append(key)
+    keysSorted.sort()
+    for key in keysSorted:
+        print(key)
+def ShowWordCount(text):
+    text = text.replace(".", " ")
+    text = text.replace(",", " ")
+    allWords = text.split()
+    allWordsSingle = {}
+    for word in allWords:
+        allWordsSingle.update({word: allWords.count(word)})
+    keysSorted = []
+    for key in allWordsSingle:
+        keysSorted.append(key)
+    keysSorted.sort()
+    for key in keysSorted:
+        print(f"{key} - {allWordsSingle[key]}")
+def ShowTextLenght(text):
+    print(len(text))
+text = input("\n\nEnter a text: ")
 while True:
-    alphabet = {"eng": "abcdefghijklmnopqrstuvwxyz",
-                "ukr": "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя",
-                "nums": "0123456789"
-                }
-    encrypt = input("Enter a clear message: ").lower()
-    encrypted = ""
-    for letter in encrypt:
-        if letter in alphabet["eng"]:
-            position = alphabet["eng"].find(letter) + 1
-            if letter in alphabet["eng"][-1]:
-                encrypted = encrypted + alphabet["eng"][0]
-            else:
-                encrypted = encrypted + alphabet["eng"][position]
-        elif letter in alphabet["ukr"]:
-            position = alphabet["ukr"].find(letter) + 1
-            if letter in alphabet["ukr"][-1]:
-                encrypted = encrypted + alphabet["ukr"][0]
-            else:
-                encrypted = encrypted + alphabet["ukr"][position]
-        elif letter in alphabet["nums"]:
-            position = alphabet["nums"].find(letter) + 1
-            if letter in alphabet["nums"][-1]:
-                encrypted = encrypted + alphabet["nums"][0]
-            else:
-                encrypted = encrypted + alphabet["nums"][position]
-        else:
-            encrypted = encrypted + letter
-    print(encrypted)
+    action = input("Select an action: \n1 - Show words sorted\n2 - Show words count\n3 - Show text lenght\n")
+    if action == "1":
+        ShowSorted(text)
+    elif action == "2":
+        ShowWordCount(text)
+    elif action == "3":
+        ShowTextLenght(text)
+    else:
+        print("Invalid action!")
 
