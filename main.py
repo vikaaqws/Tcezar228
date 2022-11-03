@@ -1,4 +1,5 @@
-
+text = input("Введіть текст :  ")
+mode = input("Введіть режим редагування(A/B/C) : ")
 def ShowSorted(text):
     text = text.replace(".", " ")
     text = text.replace(",", " ")
@@ -26,8 +27,11 @@ def ShowWordCount(text):
     for key in keysSorted:
         print(f"{key} - {allWordsSingle[key]}")
 def ShowTextLenght(text):
-    print(len(text))
-text = input("\n\nEnter a text: ")
+    text = text.split()
+    text.sort(key=len)
+    print(text[-1:-6:-1])
+
+text = "Багато років пройшло після смерті Тараса Шевченка."
 while True:
     action = input("Select an action: \n1 - Show words sorted\n2 - Show words count\n3 - Show text lenght\n")
     if action == "1":
